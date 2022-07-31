@@ -1,6 +1,7 @@
 'use strict';
 window.addEventListener('click', (event) => {
 	let counter;
+
 	// Клик строго по кнопкам Плюс либо Минус
 	if (event.target.dataset.action === 'plus' || event.target.dataset.action === 'minus') {
 		// Находим родителя счетчика
@@ -14,6 +15,7 @@ window.addEventListener('click', (event) => {
 		// Изменяем текст в счетчике увеличивая его на 1
 		counter.innerText = ++counter.innerText;
 	}
+
 	// Проверяем является ли элемент кнопкой Минус
 	if (event.target.dataset.action === 'minus') {
 		if (parseInt(counter.innerText) > 1) {
