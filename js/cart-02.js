@@ -19,10 +19,15 @@ window.addEventListener('click', (event) => {
 			counter: cart.querySelector('[data-counter]').innerText,
 		};
 
-		console.log(productInfo);
+		// Проверять если ли уже такой товар в корзине
+		const itemInCart = cartWrapper.querySelector(`[data-id="${productInfo.id}"]`);
 
-		// Собранные данные подставим в шаблон для товара в корзине
-		const cartItemHTML = `							
+		if (itemInCart) {
+			const counterElement = itemInCart.querySelector('[data-counter]');
+			counterElement.innerText = parseInt(counterElement.innerText) + parseInt(productInfo.counter);
+		} else {
+			// Собранные данные подставим в шаблон для товара в корзине
+			const cartItemHTML = `							
       <div class="cart-item" data-id="${productInfo.id}">
         <div class="cart-item__top">
           <div class="cart-item__img">
@@ -50,7 +55,13 @@ window.addEventListener('click', (event) => {
         </div>
       </div>`;
 
-		// Отобразим товар в корзине
-		cartWrapper.insertAdjacentHTML('beforeend', cartItemHTML);
+			// Отобразим товар в корзине
+			cartWrapper.insertAdjacentHTML('beforeend', cartItemHTML);
+		}
+		// Сбрасываем счетчик на единицу
+		cart.querySelector('[data-counter]').innerText = '1';
+
+		// Отображениестатуса корзины Пустая / Полная
+		toggleCartStatus();
 	}
 });
