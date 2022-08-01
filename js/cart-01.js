@@ -19,8 +19,6 @@ window.addEventListener('click', (event) => {
 			counter: cart.querySelector('[data-counter]').innerText,
 		};
 
-		console.log(productInfo);
-
 		// Собранные данные подставим в шаблон для товара в корзине
 		const cartItemHTML = `							
       <div class="cart-item" data-id="${productInfo.id}">
